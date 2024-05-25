@@ -1,13 +1,12 @@
+# SunoDeno
 
-# Suno-MA
-
-Suno-MA is a Node.js library designed for interacting with the Suno AI music generation service. This library provides a comprehensive set of methods to generate songs, retrieve metadata, save generated songs, and more.
+SunoDeno is a library designed for interacting with the Suno AI music generation service. This library provides a comprehensive set of methods to generate songs, retrieve metadata, return song links as buffer data, and more. The initial code for this library is based on the repository [hissincn/suno-ai](https://github.com/hissincn/suno-ai).
 
 ## Features
 
 - Generate songs with AI-generated lyrics or custom lyrics
 - Retrieve metadata for generated songs
-- Save generated songs and associated data locally
+- Return song links as buffer data
 - Retrieve remaining song generation credits
 - Generate song lyrics with AI
 
@@ -19,22 +18,23 @@ To install the library, you need to have [Node.js](https://nodejs.org/) installe
 npm install
 ```
 
+Alternatively, if you are using Deno, no additional dependencies are required.
+
 ## Usage
 
-Here's how you can use Suno-MA to generate and save songs:
+Here's how you can use SunoDeno to generate and retrieve song links as buffer data:
 
 ### 1. Setup
-
-Create a file named `main.js` in the `src` directory and use the following code as an example:
+Create a file named `test-my-ai-music.js` and use the following code as an example:
 
 ```javascript
-import SunoAI from './SunoAI.js';
+import SenoDeno from './SenoDeno.js';
 
 async function main() {
     try {
         const cookie = 'your_cookie';
         const sid = 'your_sid';
-        const suno = new SunoAI(sid, cookie);
+        const suno = new SenoDeno(sid, cookie);
 
         await suno.init();
 
@@ -53,8 +53,10 @@ async function main() {
         };
 
         const songInfo = await suno.generateSongs(payload);
-        const outputDir = './output';
-        await suno.saveSongs(songInfo, outputDir);
+        for (const song of songInfo) {
+            const buffer = await suno.getSongBuffer(song.audio_url);
+            console.log(`Song buffer for ${song.title}:`, buffer);
+        }
 
         const ids = ['79742cdf-86c9-432f-81f2-8c2126de42d9', 'ae5ccb5-f4f8-49c9-8f5c-192e43ed9b0c', '0bba671e-b071-4da8-99e7-361b4c69f8b3'];
         const specificSongs = await suno.getMetadata(ids);
@@ -76,14 +78,20 @@ main();
 To run the code, use the following command:
 
 ```bash
-npm start
+node test-my-ai-music
+```
+
+Or if you are using Deno:
+
+```bash
+deno run --allow-net test-my-ai-music.js
 ```
 
 ### 3. Methods Overview
 
 #### `init()`
 
-Initializes the SunoAI instance and renews the authentication token.
+Initializes the SenoDeno instance and renews the authentication token.
 
 #### `getLimitLeft()`
 
@@ -93,9 +101,9 @@ Returns the number of song generation credits left.
 
 Generates songs based on the provided payload.
 
-#### `saveSongs(songsInfo, outputDir)`
+#### `getSongBuffer(url)`
 
-Saves the generated songs and associated metadata to the specified output directory.
+Retrieves the song link as buffer data.
 
 #### `getMetadata(ids)`
 
@@ -116,7 +124,7 @@ Generates song lyrics based on the provided prompt.
 ```json
 {
   "gpt_description_prompt": "a syncopated blues song about how you're always there for me",
-  "mv": "chirp-v3-0",
+  "mv": "chirp-v3-5",
   "prompt": "",
   "make_instrumental": false
 }
@@ -126,7 +134,7 @@ Generates song lyrics based on the provided prompt.
 
 ```json
 {
-  "prompt": "the first line\nthe second line\nthe third line",
+  "prompt": "[Intro Clapping]\nسأسافرُ عبرَ الارض\nباحثا في كلِ مكان \n عن بوكيمون اداةِ \nالسلام\nقوةُ لا تهان\nبوكيمون سأجمعها الان\nفلتساندني\nبقوتك ساعدني\nآه لحلمنا الوحيد نحو عالمِ جديد",
   "tags": "dreamy kids music",
   "mv": "chirp-v3-0",
   "title": "Lines",
@@ -153,9 +161,9 @@ Generates song lyrics based on the provided prompt.
 
 ```json
 {
-  "prompt": "[Verse]\nWalking down the street, nobody takes a second glance\nLost in the crowd, I'm just a faceless passerby (oh-oh-oh)\nBut I refuse to blend in, I won't fade into the grey\nGonna paint this town with vibrant colors, watch me fly high\n\n[Verse 2]\nIn a world of trends and fashion, I stick out like a sore thumb\nBut I'm proud to be different, I won't apologize (oh-oh-oh)\nI'm not gonna play the game, I won't follow the rules\nGonna carve my own path, let my spirit rise\n\n[Chorus]\nHey world, take a look at me now (look at me now)\nI'm the one you overlooked, but now I'm breaking out (oh-oh-oh)\nI'm gonna dance to my own beat, gonna sing my own song (sing it loud)\nI won't be lost in the shuffle for too long (too long)",
+  "prompt": "[Verse]\nWalking down the street, nobody takes a second glance\nLost in the crowd, I'm just a faceless passerby (oh-oh-oh)\n",
   "tags": "electronic hip hop",
-  "mv": "chirp-v3-0",
+  "mv": "chirp-v3-5",
   "title": "Lost in the Shuffle",
   "continue_clip_id": "62ed33cb-f802-47d3-a233-9a7f3fc804a3",
   "continue_at": 90.36
@@ -165,4 +173,3 @@ Generates song lyrics based on the provided prompt.
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
