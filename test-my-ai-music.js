@@ -1,7 +1,12 @@
 
-//import SunoDeno from "./src/SunoDeno.js";
+import SunoDeno from "./src/SunoDeno.js";
 
-import SunoDeno from 'suno-deno';
+//nodejs npm 
+//import SunoDeno from 'suno-deno';
+//if deno land
+//import SunoDeno from 'https://unpkg.com/suno-deno';
+//or
+//import SunoDeno from 'npm:suno-deno';
 
 async function main(sid, cookie) {
   try {
@@ -69,17 +74,15 @@ async function main(sid, cookie) {
     const ids = ["7cfa03c5-56bb-4eaa-b5e8-84cf0592da9b"];
     const specificSongs = await suno.getMetadata(ids);
 
-    //    const allSongs = await suno.getAllSongs();
-
-    //  const lyrics = await suno.generateLyrics("حول مدينة مراكش");
-    // console.log(lyrics);
+      const allSongs = await suno.getAllSongs();
+ console.log({allSongs});
+     const lyrics = await suno.generateLyrics("حول مدينة مراكش");
+     console.log(lyrics);
   } catch (error) {
     console.error("Error:", error);
   }
 }
-
-const cookie =
-  "__client=eyJhbbEg";
-const sid = "sess_2gyfPonaEsXq";
-
+const cookie = '__client=j2s-******3qDO5-';
+const sid = 'sess_2*****sXq';
 main(sid, cookie);
+      
