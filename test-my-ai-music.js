@@ -1,8 +1,11 @@
-import SenoDeno from "./src/SenoDeno.js";
+
+//import SunoDeno from "./src/SunoDeno.js";
+
+import SunoDeno from 'suno-deno';
 
 async function main(sid, cookie) {
   try {
-    const suno = new SenoDeno(sid, cookie);
+    const suno = new SunoDeno(sid, cookie);
 
     await suno.init();
 

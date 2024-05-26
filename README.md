@@ -15,7 +15,7 @@ Suno-Deno is a library designed for interacting with the Suno AI music generatio
 To install the library, you need to have [Node.js](https://nodejs.org/) installed. Run the following command to install the necessary dependencies:
 
 ```bash
-npm install
+npm install suno-deno
 ```
 
 Alternatively, if you are using Deno, no additional dependencies are required.
@@ -28,13 +28,16 @@ Here's how you can use Suno-Ma to generate and retrieve song links as buffer dat
 Create a file named `test-my-ai-music.js` and use the following code as an example:
 
 ```javascript
-import SenoDeno from './SenoDeno.js';
+import SunoDeno from 'suno-deno';
+// if deno land
+
+// import SunoDeno from 'https://unpkg.com/suno-deno';
 
 async function main() {
     try {
         const cookie = 'your_cookie';
         const sid = 'your_sid';
-        const suno = new SenoDeno(sid, cookie);
+        const suno = new SunoDeno(sid, cookie);
 
         await suno.init();
 
@@ -91,7 +94,7 @@ deno run --allow-net test-my-ai-music.js
 
 #### `init()`
 
-Initializes the SenoDeno instance and renews the authentication token.
+Initializes the SunoDeno instance and renews the authentication token.
 
 #### `getLimitLeft()`
 

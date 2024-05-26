@@ -1,2 +1,2 @@
-import SunoDeno from "./src/SenoDeno.js";
+import SunoDeno from "./src/SunoDeno.js";
 export default SunoDeno

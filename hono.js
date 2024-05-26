@@ -1,7 +1,7 @@
 import { Hono } from "hono";
-import SenoDeno from "./src/SenoDeno.js";
+import SunoDeno from "suno-deno";
 
-const suno = new SenoDeno("your_sid", "your_cookie");
+const suno = new SunoDeno("your_sid", "your_cookie");
 await suno.init();
 
 const app = new Hono();
