@@ -75,7 +75,8 @@ async function main(sid, cookie) {
   }
 }
 
-const cookie = "__client=eyJhbbEg";
+const cookie =
+  "__client=eyJhbbEg";
 const sid = "sess_2gyfPonaEsXq";
 
 main(sid, cookie);

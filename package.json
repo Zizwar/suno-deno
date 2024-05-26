@@ -1,11 +1,9 @@
 {
-  "name": "Suno-ma",
-  "version": "1.0.0",
+  "name": "suno-deno",
+  "version": "0.7",
   "description": "A project to interact with SunoAI API",
+  "main": "main.js",
   "type": "module",
   "author": "Brahim Bidi",
-  "license": "MIT",
-  "dependencies": {
-    "hono": "^4.3.11"
-  }
+  "license": "MIT"
 }
