@@ -75,7 +75,7 @@ async function main(sid, cookie) {
   }
 }
 
-const cookie = "__client=eyJhbGci**********oTbEg";
-const sid = "sess_2**********sXq";
+const cookie = "__client=eyJhbbEg";
+const sid = "sess_2gyfPonaEsXq";
 
 main(sid, cookie);

@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "A project to interact with SunoAI API",
   "type": "module",
-
   "author": "Brahim Bidi",
-  "license": "MIT"
-
+  "license": "MIT",
+  "dependencies": {
+    "hono": "^4.3.11"
+  }
 }
