@@ -121,7 +121,7 @@ Retrieves metadata for all generated songs.
 Generates song lyrics based on the provided prompt.
 
 ## API with Honojs
-````javascript
+```javascript
 import { Hono } from "npm:hono";
 import SunoDeno from "npm:suno-deno";
 const SESS = Deno.env.get("SESS")||"sess_";
@@ -144,8 +144,6 @@ https://github.com/Zizwar/suno-deno`);
     return c.json({ error: error.message }, 500);
   }
 });
-
-
 
 app.get("/limit", async (c) => {
   try {
@@ -215,8 +213,9 @@ await suno.init();
 Deno.serve(app.fetch);
 
 ```
-
-## Example Payloads
+test dash deno deploy: 
+https://dash.deno.com/playground/suno
+## Example Payloads or Body
 
 ### Generate a song with a prompt
 
