@@ -72,7 +72,7 @@ class SenoDeno {
             });
             const data = await response.json();
 
-            if (data.some(item => item.audio_url)) {
+            if (data.some(item => item.id)) {
                 return data;
             }
 
