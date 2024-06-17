@@ -71,7 +71,7 @@ class SenoDeno {
                 headers: this.headers
             });
             const data = await response.json();
-
+return data;
             if (data.some(item => item.id)) {
                 return data;
             }
