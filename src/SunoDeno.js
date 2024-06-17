@@ -59,7 +59,9 @@ class SenoDeno {
         });
         if (!response.ok) throw new Error(`Error response ${response.status}`);
         const data = await response.json();
-        return data.clips.map(clip => clip.id);
+return data;
+      /*  return data.clips.map(clip => clip.id);
+*/
     }
 
     async getMetadata(ids = []) {
