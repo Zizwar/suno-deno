@@ -24,7 +24,7 @@ class SenoDeno {
 
     async renewAuth() {
         try {
-            const response = await fetch(`https://clerk.suno.com/v1/client/sessions/${this.sid}/tokens?_clerk_js_version=4.72.4`, {
+            const response = await fetch(`https://clerk.suno.com/v1/client/sessions/${this.sid}/tokens?_clerk_js_version=4.73.3`, {
                 method: 'POST',
                 headers: { Cookie: this.cookie }
             });
