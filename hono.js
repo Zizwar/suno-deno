@@ -25,7 +25,9 @@ app.get("/limit", async (c) => {
 });
 
 app.post("/generate-songs", async (c) => {
+
   try {
+    await suno.init();
     const payload = await c.req.json();
     const songs = await suno.generateSongs(payload);
     return c.json({ songs });
@@ -36,6 +38,7 @@ app.post("/generate-songs", async (c) => {
 
 app.get("/metadata", async (c) => {
   try {
+    await suno.init();
     const ids = c.req.query("ids")?.split(",") || [];
     const metadata = await suno.getMetadata(ids);
     return c.json({ metadata });
