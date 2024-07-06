@@ -1,6 +1,6 @@
 # Suno-Deno
 
-Suno-Deno is a library designed for interacting with the Suno AI music generation service. This library provides a comprehensive set of methods to generate songs, retrieve metadata, return song links as buffer data, and more. The initial code for this library is based on the repository [hissincn/suno-ai](https://github.com/hissincn/suno-ai).
+Suno-Deno is a library designed for interacting with the Suno AI music generation service. This library provides a comprehensive set of methods to generate songs, retrieve metadata, return song links as buffer data, and more. 
 
 ## Features
 
