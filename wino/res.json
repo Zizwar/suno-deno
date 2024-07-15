@@ -1,0 +1,110 @@
+{
+  "response": {
+    "object": "sign_in_attempt",
+    "id": "sia_2jFEafyR1ThceYjAVEj56niV7Iz",
+    "status": "needs_first_factor",
+    "supported_identifiers": ["phone_number"],
+    "supported_first_factors": [
+      {
+        "strategy": "phone_code",
+        "safe_identifier": "+212648888888",
+        "phone_number_id": "idn_2jDZxA31nFTVOZtfNN4HLdKnk9t",
+        "primary": true
+      }
+    ],
+    "supported_second_factors": null,
+    "first_factor_verification": null,
+    "second_factor_verification": null,
+    "identifier": "+21264888881",
+    "user_data": {
+      "first_name": null,
+      "last_name": null,
+      "image_url": "https://img.clerk.com/eyJ0eXBlIjoiZGVmYXVsdCIsImlpZCI6Imluc18yT1o2eU1EZzhscWRKRWloMXJvemY4T3ptZG4iLCJyaWQiOiJ1c2VyXzJqRFp6a3BMZXJjQ3hFUnIxNkRQamVjQ0VONCJ9",
+      "has_image": false,
+      "profile_image_url": "https://www.gravatar.com/avatar?d=mp"
+    },
+    "created_session_id": null,
+    "abandon_at": 1721060889451
+  },
+  "client": {
+    "object": "client",
+    "id": "client_2jFEalEsE5yNERbPp4u0cOdRUD5",
+    "sessions": [],
+    "sign_in": {
+      "object": "sign_in_attempt",
+      "id": "sia_2jFEafyR1ThceYjAVEj56niV7Iz",
+      "status": "needs_first_factor",
+      "supported_identifiers": ["phone_number"],
+      "supported_first_factors": [
+        {
+          "strategy": "phone_code",
+          "safe_identifier": "+21264888881",
+          "phone_number_id": "idn_2jDZxA31nFTVOZtfNN4HLdKnk9t",
+          "primary": true
+        }
+      ],
+      "supported_second_factors": null,
+      "first_factor_verification": null,
+      "second_factor_verification": null,
+      "identifier": "+21264888881",
+      "user_data": {
+        "first_name": null,
+        "last_name": null,
+        "image_url": "https://img.clerk.com/eyJ0eXBlIjoiZGVmYXVsdCIsImlpZCI6Imluc18yT1o2eU1EZzhscWRKRWloMXJvemY4T3ptZG4iLCJyaWQiOiJ1c2VyXzJqRFp6a3BMZXJjQ3hFUnIxNkRQamVjQ0VONCJ9",
+        "has_image": false,
+        "profile_image_url": "https://www.gravatar.com/avatar?d=mp"
+      },
+      "created_session_id": null,
+      "abandon_at": 1721060889451
+    },
+    "sign_up": null,
+    "last_active_session_id": null,
+    "created_at": 1720974489426,
+    "updated_at": 1720974489460
+  }
+}
+{
+    response: {
+      object: 'sign_in_attempt',
+      id: 'sia_2jHqJuR7LxzkC8OJHFJDmz7NLIS',
+      status: 'needs_first_factor',
+      supported_identifiers: [ 'phone_number' ],
+      supported_first_factors: [ [Object] ],
+      supported_second_factors: null,
+      first_factor_verification: null,
+      second_factor_verification: null,
+      identifier: '+212648888888',
+      user_data: {
+        first_name: null,
+        last_name: null,
+        image_url: 'https://img.clerk.com/eyJ0eXBlIjoiZGVmYXVsdCIsImlpZCI6Imluc18yT1o2eU1EZzhscWRKRWloMXJvemY4T3ptZG4iLCJyaWQiOiJ1c2VyXzJqRFp6a3BMZXJjQ3hFUnIxNkRQamVjQ0VONCJ9',
+        has_image: false,
+        profile_image_url: 'https://www.gravatar.com/avatar?d=mp'
+      },
+      created_session_id: null,
+      abandon_at: 1721140681446
+    },
+    client: {
+      object: 'client',
+      id: 'client_2jHqJtwPQWWXv0Xaim60Gv6NeZn',
+      sessions: [],
+      sign_in: {
+        object: 'sign_in_attempt',
+        id: 'sia_2jHqJuR7LxzkC8OJHFJDmz7NLIS',
+        status: 'needs_first_factor',
+        supported_identifiers: [Array],
+        supported_first_factors: [Array],
+        supported_second_factors: null,
+        first_factor_verification: null,
+        second_factor_verification: null,
+        identifier: '+212648888888',
+        user_data: [Object],
+        created_session_id: null,
+        abandon_at: 1721140681446
+      },
+      sign_up: null,
+      last_active_session_id: null,
+      created_at: 1721054281432,
+      updated_at: 1721054281450
+    }
+  }
