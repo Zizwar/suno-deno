@@ -3,7 +3,7 @@ import SunoDeno from "npm:suno-deno";
 const SESS = Deno.env.get("SESS")||"sess_";
 const COOKIE = Deno.env.get("COOKIE")||"__client=eg";
 
-const suno = new SunoDeno(SESS, COOKIE);
+let suno = new SunoDeno(SESS, COOKIE);
 
 const app = new Hono();
 
@@ -24,6 +24,9 @@ https://github.com/Zizwar/suno-deno`);
 
 
 app.get("/limit", async (c) => {
+  
+suno = new SunoDeno(c.req.query("sess")||SESS ,c.req.query("cookie")|| COOKIE);
+await suno.init();
   try {
     const limit = await suno.getLimitLeft();
     return c.json({ limit });
@@ -33,6 +36,9 @@ app.get("/limit", async (c) => {
 });
 
 app.post("/generate-songs", async (c) => {
+  
+suno = new SunoDeno(c.req.query("sess")||SESS ,c.req.query("cookie")|| COOKIE);
+await suno.init();
   try {
     const payload = await c.req.json();
     const songs = await suno.generateSongs(payload);
@@ -43,6 +49,9 @@ app.post("/generate-songs", async (c) => {
 });
 
 app.get("/metadata", async (c) => {
+  
+suno = new SunoDeno(c.req.query("sess")||SESS ,c.req.query("cookie")|| COOKIE);
+await suno.init();
   try {
     const ids = c.req.query("ids")?.split(",") || [];
     const metadata = await suno.getMetadata(ids);
@@ -53,6 +62,9 @@ app.get("/metadata", async (c) => {
 });
 
 app.get("/all-songs", async (c) => {
+  
+suno = new SunoDeno(c.req.query("sess")||SESS ,c.req.query("cookie")|| COOKIE);
+await suno.init();
   try {
     const songs = await suno.getAllSongs();
     return c.json({ songs });
@@ -62,6 +74,9 @@ app.get("/all-songs", async (c) => {
 });
 
 app.get("/song-buffer", async (c) => {
+  
+suno = new SunoDeno(c.req.query("sess")||SESS ,c.req.query("cookie")|| COOKIE);
+await suno.init();
   try {
     const url = c.req.query("url");
     const buffer = await suno.getSongBuffer(url);
@@ -76,6 +91,9 @@ app.get("/song-buffer", async (c) => {
 });
 
 app.post("/generate-lyrics", async (c) => {
+  
+suno = new SunoDeno(c.req.query("sess")||SESS ,c.req.query("cookie")|| COOKIE);
+await suno.init();
   try {
     const { prompt } = await c.req.json();
     const lyrics = await suno.generateLyrics(prompt);
@@ -89,3 +107,4 @@ try {
 await suno.init();
 }catch(e){console.log(e)}
 Deno.serve(app.fetch);
+
