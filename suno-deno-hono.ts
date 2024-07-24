@@ -1,9 +1,17 @@
 import { Hono } from "npm:hono";
-import SunoDeno from "npm:suno-deno";
+import SunoDeno from "https://raw.githubusercontent.com/Zizwar/suno-deno/main/src/SunoDeno.js";
+//import SunoDeno from "npm:suno-deno";
 const SESS = Deno.env.get("SESS")||"sess_";
 const COOKIE = Deno.env.get("COOKIE")||"__client=eg";
 
-let suno = new SunoDeno(SESS, COOKIE);
+const Suno=async (c) => {
+  const sess = c.req.query("sess")||SESS;
+const cookie =c.req.query("cookie")||COOKIE;
+
+const suno = new SunoDeno(sess , cookie);
+await suno.init();
+return suno
+}
 
 const app = new Hono();
 
@@ -21,13 +29,11 @@ https://github.com/Zizwar/suno-deno`);
   }
 });
 
-
+//
 
 app.get("/limit", async (c) => {
-  
-suno = new SunoDeno(c.req.query("sess")||SESS ,c.req.query("cookie")|| COOKIE);
-await suno.init();
   try {
+ const suno = await Suno(c);   
     const limit = await suno.getLimitLeft();
     return c.json({ limit });
   } catch (error) {
@@ -36,10 +42,8 @@ await suno.init();
 });
 
 app.post("/generate-songs", async (c) => {
-  
-suno = new SunoDeno(c.req.query("sess")||SESS ,c.req.query("cookie")|| COOKIE);
-await suno.init();
   try {
+    const suno = await Suno(c);
     const payload = await c.req.json();
     const songs = await suno.generateSongs(payload);
     return c.json({ songs });
@@ -47,12 +51,22 @@ await suno.init();
     return c.json({ error: error.message }, 500);
   }
 });
+app.post("/generate", async (c) => {
+    try {
+      const suno = await Suno(c);
+        const payload = await c.req.json();
+            const songs = await suno.getRequestIds(payload);
+                return c.json({ songs });
+                console.log({songs})
+                  } catch (error) {
+                      return c.json({ error: error.message }, 500);
+                        }
+                        });
 
+//})
 app.get("/metadata", async (c) => {
-  
-suno = new SunoDeno(c.req.query("sess")||SESS ,c.req.query("cookie")|| COOKIE);
-await suno.init();
   try {
+const suno = await Suno(c);
     const ids = c.req.query("ids")?.split(",") || [];
     const metadata = await suno.getMetadata(ids);
     return c.json({ metadata });
@@ -62,10 +76,10 @@ await suno.init();
 });
 
 app.get("/all-songs", async (c) => {
-  
-suno = new SunoDeno(c.req.query("sess")||SESS ,c.req.query("cookie")|| COOKIE);
-await suno.init();
+
   try {
+const suno = await Suno(c);
+
     const songs = await suno.getAllSongs();
     return c.json({ songs });
   } catch (error) {
@@ -74,10 +88,8 @@ await suno.init();
 });
 
 app.get("/song-buffer", async (c) => {
-  
-suno = new SunoDeno(c.req.query("sess")||SESS ,c.req.query("cookie")|| COOKIE);
-await suno.init();
   try {
+    const suno = await Suno(c);
     const url = c.req.query("url");
     const buffer = await suno.getSongBuffer(url);
     return new Response(buffer, {
@@ -90,12 +102,11 @@ await suno.init();
   }
 });
 
-app.post("/generate-lyrics", async (c) => {
-  
-suno = new SunoDeno(c.req.query("sess")||SESS ,c.req.query("cookie")|| COOKIE);
-await suno.init();
+app.get("/generate-lyrics", async (c) => {
+
   try {
-    const { prompt } = await c.req.json();
+    const suno = await Suno(c);
+    const  prompt  = await c.req.query("prompt");
     const lyrics = await suno.generateLyrics(prompt);
     return c.json({ lyrics });
   } catch (error) {
@@ -103,8 +114,4 @@ await suno.init();
   }
 });
 
-try {
-await suno.init();
-}catch(e){console.log(e)}
 Deno.serve(app.fetch);
-
