@@ -39,6 +39,14 @@ class SenoDeno {
         }
     }
 
+    
+    async playlist(id,page=1) {
+        const response = await fetch(`${BASE_URL}/api/${playlistId}/?page=${page}`, {
+            headers: this.headers
+        });
+        const data = await response.json();
+        return Math.floor(data.total_credits_left / 10);
+    }
     async getLimitLeft() {
         const response = await fetch(`${BASE_URL}/api/billing/info/`, {
             headers: this.headers
@@ -60,8 +68,6 @@ class SenoDeno {
         if (!response.ok) throw new Error(`Error response ${response.status}`);
         const data = await response.json();
 return data;
-      /*  return data.clips.map(clip => clip.id);
-*/
     }
 
     async getMetadata(ids = []) {
@@ -100,7 +106,32 @@ return data;
     async getAllSongs() {
         return await this.getMetadata();
     }
+    async search(payload) {
+        const response = await fetch(`${BASE_URL}/api/search/`, {
+            method: 'POST',
+            headers: {
+                ...this.headers,
+                'Content-Type': 'application/json'
+            },
+            /*
+            const payload = {
+           "search_queries": [
+            {
+            "name": "public_song"+q,
+            "search_type": "public_song",
+            "term": "folk",
+            "from_index": page,
+            rank_by
+                }
+              ]
+             }
+            */
+            body: JSON.stringify(payload)
 
+        });
+        const data = await response.json();
+        return data;
+    }
     async generateLyrics(prompt) {
         const response = await fetch(`${BASE_URL}/api/generate/lyrics/`, {
             method: 'POST',
