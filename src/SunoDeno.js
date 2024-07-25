@@ -41,11 +41,11 @@ class SenoDeno {
 
     
     async playlist(id,page=1) {
-        const response = await fetch(`${BASE_URL}/api/${playlistId}/?page=${page}`, {
+        const response = await fetch(`${BASE_URL}/api/playlist/${playlistId}?page=${page}`, {
             headers: this.headers
         });
         const data = await response.json();
-        return Math.floor(data.total_credits_left / 10);
+        return data
     }
     async getLimitLeft() {
         const response = await fetch(`${BASE_URL}/api/billing/info/`, {
