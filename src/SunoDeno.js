@@ -41,7 +41,7 @@ class SenoDeno {
 
     
     async playlist(id,page=1) {
-        const response = await fetch(`${BASE_URL}/api/playlist/${playlistId}?page=${page}`, {
+        const response = await fetch(`${BASE_URL}/api/playlist/${id}?page=${page}`, {
             headers: this.headers
         });
         const data = await response.json();
