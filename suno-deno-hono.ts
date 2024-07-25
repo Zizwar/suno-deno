@@ -107,6 +107,21 @@ app.get("/metadata", async (c) => {
   }
 });
 
+app.get("/playlist", async (c) => {
+  try {
+   // const suno = await Suno(c);
+    const id = c.req.query("id") || "1190bf92-10dc-4ce5-968a-7a377f37f984";
+    const page = c.req.query("page") || 1;
+    //const data = await suno.playlist(id,page);
+    const url = 'https://studio-api.suno.ai/api/playlist/'+id+'/?page='+page;
+    const response = await fetch(url);
+    const data = await response.json();
+    return c.json(data);
+  } catch (error) {
+    return c.json({ error: error.message }, 500);
+  }
+});
+
 app.get("/all-songs", async (c) => {
   try {
     const suno = await Suno(c);
