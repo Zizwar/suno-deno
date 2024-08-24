@@ -1,6 +1,7 @@
 const BASE_URL = "https://studio-api.suno.ai";
 const MAX_RETRY_TIMES = 5;
 
+const VERSION_CLERK= "5.15.0";
 class SenoDeno {
   constructor(sid, cookie) {
     this.sid = sid;
@@ -22,7 +23,7 @@ class SenoDeno {
   async renewAuth() {
     try {
       const response = await fetch(
-        `https://clerk.suno.com/v1/client/sessions/${this.sid}/tokens?_clerk_js_version=4.73.4`,
+        `https://clerk.suno.com/v1/client/sessions/${this.sid}/tokens?_clerk_js_version=${VERSION_CLERK}`,
         {
           method: "POST",
           headers: { Cookie: this.cookie },
