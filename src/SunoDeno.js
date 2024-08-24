@@ -16,11 +16,18 @@ class SenoDeno {
     this.authUpdateTime = null;
   }
 
-  async init() {
-    await this.renewAuth();
+  async init(jwt) {
+    await this.renewAuth(jwt);
   }
 
-  async renewAuth() {
+  async renewAuth(jwt) {
+this.authUpdateTime = Date.now();
+if(jwt){
+ this.headers.Authorization = `Bearer ${jwt}`;
+return;
+}
+      
+
     try {
       const response = await fetch(
         `https://clerk.suno.com/v1/client/sessions/${this.sid}/tokens?_clerk_js_version=${VERSION_CLERK}`,
@@ -33,7 +40,7 @@ class SenoDeno {
       const data = await response.json();
       const token = data?.jwt;
       this.headers.Authorization = `Bearer ${token}`;
-      this.authUpdateTime = Date.now();
+      
     } catch (error) {
       console.error("Error renewing auth token:", error);
       throw error;
