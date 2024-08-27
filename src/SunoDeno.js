@@ -64,9 +64,9 @@ return;
     }
   }
 
-  async playlist(id, page = 1) {
+  async playlist(id, page = 1,show_trashed=false) {
     const response = await fetch(
-      `${BASE_URL}/api/playlist/${id}?page=${page}`,
+      `${BASE_URL}/api/playlist/${id}?page=${page}&show_trashed=${show_trashed}`,
       {
         headers: this.headers,
       }
